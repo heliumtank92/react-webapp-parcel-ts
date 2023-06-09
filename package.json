@@ -34,6 +34,7 @@
     "@parcel/reporter-bundle-analyzer": "^2.9.2",
     "@parcel/transformer-raw": "^2.9.2",
     "@types/node": "^20.2.5",
+    "@types/react": "^18.2.9",
     "@types/react-dom": "^18.2.4",
     "buffer": "^6.0.3",
     "custom-env": "^2.0.2",
