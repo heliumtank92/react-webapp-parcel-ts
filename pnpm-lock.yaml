@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.0.5
     version: 2.0.5(@types/react@18.2.9)(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0)
   '@am92/web-http':
-    specifier: ^2.0.5
-    version: 2.0.5
+    specifier: ^2.0.6
+    version: 2.0.6
   '@parcel/service-worker':
     specifier: ^2.9.2
     version: 2.9.2
@@ -133,8 +133,8 @@ packages:
       - moment-jalaali
     dev: false
 
-  /@am92/web-http@2.0.5:
-    resolution: {integrity: sha512-hjrTONCV2WuwLqtSMTK83jphfI+GNt7if1gCbcp0C2LDD6JY2oKph0pol1ibxR4cJJfJB8+fnoacAvF4X+rL9g==}
+  /@am92/web-http@2.0.6:
+    resolution: {integrity: sha512-DozuS5IEG3JsF6PhPrnFHy1lt5/1WOTuecmQT5Cch6YjMDX/Znb7IE6eJ4rbg4uQmw8WJWEC/2O26yGJO7BEBg==}
     dependencies:
       '@am92/jose-crypto-subtle': 2.0.1
       axios: 1.4.0
@@ -1853,7 +1853,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001497
-      electron-to-chromium: 1.4.425
+      electron-to-chromium: 1.4.426
       node-releases: 2.0.12
       update-browserslist-db: 1.0.11(browserslist@4.21.7)
     dev: true
@@ -2178,8 +2178,8 @@ packages:
       jake: 10.8.7
     dev: true
 
-  /electron-to-chromium@1.4.425:
-    resolution: {integrity: sha512-wv1NufHxu11zfDbY4fglYQApMswleE9FL/DSeyOyauVXDZ+Kco96JK/tPfBUaDqfRarYp2WH2hJ/5UnVywp9Jg==}
+  /electron-to-chromium@1.4.426:
+    resolution: {integrity: sha512-dWuNH+XUT9hdFHASfMpcZGW5kUyJvllumJkXaXiswuCkoaFIFI89aykBPuHEi1YUWQGRCqvIO0BUdmeFJ4W4Ww==}
     dev: true
 
   /end-of-stream@1.4.4:
