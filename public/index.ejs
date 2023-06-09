@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" as="style"
+      onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" href="https://subzero.axisbank.com/fonts/lato.css" as="style"
+      onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" type="text/css" />
+      <link href="https://subzero.axisbank.com/fonts/lato.css" rel="stylesheet" type="text/css" />
+    </noscript>
+
+    <% if (locals.APP_PRECONNECT_DOMAINS && locals.APP_PRECONNECT_DOMAINS.length) { %>
+      <% PRECONNECT_DOMAINS = locals.APP_PRECONNECT_DOMAINS.split(',') %>
+      <% PRECONNECT_DOMAINS.forEach(function(PRECONNECT_DOMAIN){ %>
+        <link rel="preconnect" href="<%= PRECONNECT_DOMAIN %>" />
+      <% }); %>
+    <% } %>
+
+    <title><%= locals.APP_TITLE %></title>
+    <meta name="description" content="<%= locals.APP_DESCRIPTION %>">
+
+    <link rel="preload" href="./assets/css/base.css" as="style">
+    <link rel="stylesheet" href="./assets/css/base.css" media="print" onload="this.media='all'">
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="app"></div>
+    <script type="module" src="../src/index.tsx"></script>
+  </body>
+</html>

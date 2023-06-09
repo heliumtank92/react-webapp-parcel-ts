@@ -1,0 +1,27 @@
+{
+  "production": {
+    "name": "Parcel React App",
+    "shortName": "Parcel React App",
+    "startURL": "/",
+    "scope": "/",
+    "theme": "#000000",
+    "generateIconOptions": {
+      "baseIcon": "./public/favicon.svg",
+      "genFavicons": true,
+      "genSafariPinnedTab": true,
+      "purpose": ["any", "maskable"]
+    }
+  },
+  "development": {
+    "name": "Parcel React App",
+    "shortName": "Parcel React App",
+    "startURL": "/",
+    "scope": "/",
+    "theme": "#000000",
+    "generateIconOptions": {
+      "baseIcon": "./public/favicon.svg"
+    },
+    "disabled": true
+  }
+}
+
