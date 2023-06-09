@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@am92/react-design-system": "^2.0.5",
-    "@am92/web-http": "^2.0.6",
+    "@am92/web-http": "^2.0.7",
     "@parcel/service-worker": "^2.9.2",
     "@reduxjs/toolkit": "^1.9.5",
     "localforage": "^1.10.0",
