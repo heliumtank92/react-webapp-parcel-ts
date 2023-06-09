@@ -22,6 +22,7 @@ import getAppRouter from '~/src/Configurations/getAppRouter'
 import performHandshake from '~/src/Services/performHandshake'
 
 import { PALETTE, FONT_FAMILY } from '~/src/Constants/THEME'
+import { ThunkDispatch } from '@reduxjs/toolkit'
 
 type Props = {
   persisted: boolean
@@ -56,7 +57,7 @@ class App extends Component<Props, State> {
   render() {
     const {
       persisted,
-      themeMode
+      themeMode = 'dark'
       // accessToken,
       // refreshToken
     } = this.props
@@ -80,14 +81,14 @@ class App extends Component<Props, State> {
         modeStorageKey="mui-mode"
       >
         <DsCssBaseline enableColorScheme>
-          <Suspense loading={<Loader />}>{children}</Suspense>
+          <Suspense fallback={<Loader />}>{children}</Suspense>
         </DsCssBaseline>
       </CssVarsProvider>
     )
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   const themeMode = getThemeModeSelector(state)
   const accessToken = getAccessTokenSelector(state)
   const refreshToken = getRefreshTokenSelector(state)
@@ -99,7 +100,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
   actions: {}
 })
 

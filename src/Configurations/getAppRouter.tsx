@@ -19,11 +19,11 @@ const routeObj: RouteObject[] = [
         element: <HomePage />
       }
     ]
-  },
+  } as RouteObject,
   {
     path: APP_ROUTES.ANY.pathname,
     element: <NotFoundPage />
-  }
+  } as RouteObject
 ]
 
 const getAppRouter = () => createBrowserRouter(routeObj)
