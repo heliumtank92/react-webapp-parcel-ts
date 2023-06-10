@@ -3,16 +3,16 @@ import { asHttp } from '~/src/Configurations/WebHttp'
 import serviceActionCreator from '~/src/Redux/serviceActionCreator'
 import { loginTraceActions, loginServiceName } from '../Actions'
 
-type LoginRequestBody = {
+export type LoginRequestData = {
   username: string
   password: string
 }
 
-async function login(reqBody: LoginRequestBody) {
+async function login(reqData: LoginRequestData) {
   const options: WebHttpRequestOptions = {
     url: '/auth/login',
     method: 'POST',
-    data: reqBody
+    data: reqData
   }
 
   const response = await asHttp.request(options)
@@ -27,10 +27,10 @@ async function login(reqBody: LoginRequestBody) {
   return data
 }
 
-const loginService = serviceActionCreator<LoginRequestBody>(
+const loginServiceAction = serviceActionCreator<LoginRequestData>(
   loginTraceActions,
   login
 )
 
-export default loginService
+export default loginServiceAction
 export { loginServiceName }

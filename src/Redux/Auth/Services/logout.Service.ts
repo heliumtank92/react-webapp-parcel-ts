@@ -19,10 +19,10 @@ async function logout() {
   return data
 }
 
-const logoutService = serviceActionCreatorWithTokenRotation(
+const logoutServiceAction = serviceActionCreatorWithTokenRotation(
   logoutTraceActions,
   logout
 )
 
-export default logoutService
+export default logoutServiceAction
 export { logoutServiceName }

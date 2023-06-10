@@ -1,20 +1,21 @@
-import { ThunkDispatch } from '@reduxjs/toolkit'
-import { TraceActions } from './serviceActionCreator'
-
-import loginWithRefreshTokenService from './Auth/Services/loginWithRefreshToken.Service'
 import { WebHttpError } from '@am92/web-http'
+import { ThunkDispatch } from '@reduxjs/toolkit'
 
-const loginWithRefreshTokenServiceDispatcher = loginWithRefreshTokenService()
+import { TraceActions } from './serviceActionCreator'
+import loginWithRefreshTokenServiceAction from './Auth/Services/loginWithRefreshToken.Service'
 
-export default function serviceActionCreator<RequestBody = undefined>(
+const loginWithRefreshTokenServiceDispatcher =
+  loginWithRefreshTokenServiceAction()
+
+export default function serviceActionCreator<RequestData = void>(
   traceActions: TraceActions,
-  service: (data?: RequestBody) => Promise<any>
+  service: (data: RequestData) => Promise<any>
 ) {
-  return (data?: RequestBody) => {
+  return (data: RequestData) => {
     return async (
       dispatch: ThunkDispatch<any, any, any>,
       getState: () => unknown
-    ) => {
+    ): Promise<any | WebHttpError> => {
       if (traceActions.loading && typeof traceActions.loading === 'function') {
         dispatch(traceActions.loading())
       }
@@ -22,7 +23,7 @@ export default function serviceActionCreator<RequestBody = undefined>(
       const response = await service(data).catch(
         async (error: WebHttpError) => {
           if (error.errorCode === 'User::TOKEN_EXPIRED') {
-            await retryWithTokenRotation(
+            return await retryWithTokenRotation<RequestData>(
               traceActions,
               service,
               dispatch,
@@ -50,19 +51,19 @@ export default function serviceActionCreator<RequestBody = undefined>(
   }
 }
 
-async function retryWithTokenRotation<RequestBody = any>(
+async function retryWithTokenRotation<RequestData = void>(
   traceActions: TraceActions,
-  service: (data: RequestBody) => Promise<any>,
+  service: (data: RequestData) => Promise<any>,
   dispatch: ThunkDispatch<any, any, any>,
   getState: () => unknown,
-  data: RequestBody
-) {
+  data: RequestData
+): Promise<Response | WebHttpError> {
   const tokenRotationResponse = await loginWithRefreshTokenServiceDispatcher(
     dispatch,
     getState
   )
 
-  if (tokenRotationResponse._isCustomError) {
+  if (tokenRotationResponse instanceof WebHttpError) {
     return tokenRotationResponse
   }
 
