@@ -28,10 +28,10 @@ async function loginWithRefreshToken() {
   return data
 }
 
-const loginWithRefreshTokenServiceAction = serviceActionCreator(
+const loginWithRefreshTokenService = serviceActionCreator(
   loginWithRefreshTokenTraceActions,
   loginWithRefreshToken
 )
 
-export default loginWithRefreshTokenServiceAction
+export default loginWithRefreshTokenService
 export { loginWithRefreshTokenServiceName }

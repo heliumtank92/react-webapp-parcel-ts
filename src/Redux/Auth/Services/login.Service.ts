@@ -27,10 +27,10 @@ async function login(reqData: LoginRequestData) {
   return data
 }
 
-const loginServiceAction = serviceActionCreator<LoginRequestData>(
+const loginService = serviceActionCreator<LoginRequestData>(
   loginTraceActions,
   login
 )
 
-export default loginServiceAction
+export default loginService
 export { loginServiceName }

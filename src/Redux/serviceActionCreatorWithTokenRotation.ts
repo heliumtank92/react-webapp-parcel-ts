@@ -2,10 +2,9 @@ import { WebHttpError } from '@am92/web-http'
 import { ThunkDispatch } from '@reduxjs/toolkit'
 
 import { TraceActions } from './serviceActionCreator'
-import loginWithRefreshTokenServiceAction from './Auth/Services/loginWithRefreshToken.Service'
+import loginWithRefreshTokenService from './Auth/Services/loginWithRefreshToken.Service'
 
-const loginWithRefreshTokenServiceDispatcher =
-  loginWithRefreshTokenServiceAction()
+const loginWithRefreshTokenServiceDispatcher = loginWithRefreshTokenService()
 
 export default function serviceActionCreator<RequestData = void>(
   traceActions: TraceActions,
