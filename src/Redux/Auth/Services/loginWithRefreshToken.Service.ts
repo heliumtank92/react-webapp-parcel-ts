@@ -28,7 +28,7 @@ async function loginWithRefreshToken() {
   return data
 }
 
-const loginWithRefreshTokenService = serviceActionCreator<undefined>(
+const loginWithRefreshTokenService = serviceActionCreator(
   loginWithRefreshTokenTraceActions,
   loginWithRefreshToken
 )

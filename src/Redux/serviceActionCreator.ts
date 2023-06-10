@@ -11,7 +11,7 @@ export type TraceActions = {
   error: ActionCreatorWithPayload<WebHttpError, string>
 }
 
-export default function serviceActionCreator<RequestBody = any>(
+export default function serviceActionCreator<RequestBody = undefined>(
   traceActions: TraceActions,
   service: (data?: RequestBody) => Promise<any>
 ) {

@@ -19,7 +19,7 @@ async function logout() {
   return data
 }
 
-const logoutService = serviceActionCreatorWithTokenRotation<undefined>(
+const logoutService = serviceActionCreatorWithTokenRotation(
   logoutTraceActions,
   logout
 )

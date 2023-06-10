@@ -6,7 +6,7 @@ import { WebHttpError } from '@am92/web-http'
 
 const loginWithRefreshTokenServiceDispatcher = loginWithRefreshTokenService()
 
-export default function serviceActionCreator<RequestBody = any>(
+export default function serviceActionCreator<RequestBody = undefined>(
   traceActions: TraceActions,
   service: (data?: RequestBody) => Promise<any>
 ) {
