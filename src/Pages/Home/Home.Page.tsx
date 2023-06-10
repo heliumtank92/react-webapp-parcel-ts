@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { DsBox, DsImage, DsTypography } from '@am92/react-design-system'
-import loginService from '~/src/Redux/Auth/Services/login.Service'
 
 const homeImage = [
   {
@@ -17,9 +16,6 @@ const homeImage = [
 ]
 
 export default class HomePage extends PureComponent {
-  componentDidMount(): void {
-    // loginService()
-  }
   render() {
     return (
       <DsBox
