@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "prepare": "husky install",
     "lintTS": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
     "analyze": "pnpm run clean-and-copy && parcel build public/index.ejs --dist-dir build --reporter @parcel/reporter-bundle-analyzer",
@@ -10,7 +11,6 @@
     "build": "pnpm run clean-and-copy && parcel build public/index.ejs --dist-dir build",
     "clean-and-copy": "rm -rf build .parcel-cache && pnpm run copy",
     "copy": "mkdir build && mkdir build/static && cp -r public/static/ build/static/ && cp public/robots.txt build/",
-    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
