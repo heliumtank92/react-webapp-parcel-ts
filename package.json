@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "lintTS": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
     "analyze": "pnpm run clean-and-copy && parcel build public/index.ejs --dist-dir build --reporter @parcel/reporter-bundle-analyzer",
     "start": "pnpm run clean-and-copy && parcel public/index.ejs --dist-dir build --open chrome",
     "build": "pnpm run clean-and-copy && parcel build public/index.ejs --dist-dir build",
     "clean-and-copy": "rm -rf build .parcel-cache && pnpm run copy",
-    "copy": "mkdir build && mkdir build/static && cp -r public/static/ build/static/ && cp public/robots.txt build/"
+    "copy": "mkdir build && mkdir build/static && cp -r public/static/ build/static/ && cp public/robots.txt build/",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -38,6 +40,7 @@
     "@types/react-dom": "^18.2.4",
     "buffer": "^6.0.3",
     "custom-env": "^2.0.2",
+    "husky": "^8.0.3",
     "parcel": "^2.9.2",
     "parcel-namer-rewrite": "2.0.0-rc.3",
     "parcel-transformer-ejs": "^1.0.1",

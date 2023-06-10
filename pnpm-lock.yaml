@@ -73,6 +73,9 @@ devDependencies:
   custom-env:
     specifier: ^2.0.2
     version: 2.0.2
+  husky:
+    specifier: ^8.0.3
+    version: 8.0.3
   parcel:
     specifier: ^2.9.2
     version: 2.9.2
@@ -133,13 +136,8 @@ packages:
       - moment-jalaali
     dev: false
 
-<<<<<<< HEAD
-  /@am92/web-http@2.0.7:
-    resolution: {integrity: sha512-p7fynVMyvVvGLhN9xU4vZIIDaEGJJD/SYWyxDuD2JcCqiADM9QbvN6ra8EEkM6bZ3AH0GOMPT/V40YBzWUsa0w==}
-=======
   /@am92/web-http@2.0.8:
     resolution: {integrity: sha512-vRSZsqZsiErEY+9k+W4zaqJqwqRoYAicayni4JuCVrO6qdCi6oyAAMzb7awwkCK42CsMSs5zFX9/MeQUI1hBaQ==}
->>>>>>> 4a14710 (Fix WebHttp)
     dependencies:
       '@am92/jose-crypto-subtle': 2.0.1
       axios: 1.4.0
@@ -2453,6 +2451,12 @@ packages:
       domhandler: 4.3.1
       domutils: 2.8.0
       entities: 3.0.1
+    dev: true
+
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /iconv-lite@0.4.24:
