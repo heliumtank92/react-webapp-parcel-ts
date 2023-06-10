@@ -4,8 +4,8 @@ import { TraceActions } from './serviceActionCreator'
 
 export default function createTraceActions(serviceName: string) {
   const loading = createAction(`${serviceName}/LOADING`)
-  const success = createAction<any, string>(`${serviceName}/LOADING`)
-  const error = createAction<WebHttpError, string>(`${serviceName}/LOADING`)
+  const success = createAction<any, string>(`${serviceName}/SUCCESS`)
+  const error = createAction<WebHttpError, string>(`${serviceName}/ERROR`)
 
   const traceActions: TraceActions = { loading, success, error }
   return traceActions

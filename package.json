@@ -10,7 +10,7 @@
     "start": "pnpm run clean-and-copy && parcel public/index.ejs --dist-dir build --open chrome",
     "build": "pnpm run clean-and-copy && parcel build public/index.ejs --dist-dir build",
     "clean-and-copy": "rm -rf build .parcel-cache && pnpm run copy",
-    "copy": "mkdir build && mkdir build/static && cp -r public/static/ build/static/ && cp public/robots.txt build/",
+    "copy": "mkdir build && mkdir build/static && cp -r public/static/ build/static/ && cp public/robots.txt build/"
   },
   "keywords": [],
   "author": "",

@@ -11,7 +11,7 @@ export type TraceActions = {
   error: ActionCreatorWithPayload<WebHttpError, string>
 }
 
-export default function serviceActionCreator<RequestBody = undefined>(
+export default function serviceActionCreator<RequestBody = never>(
   traceActions: TraceActions,
   service: (data?: RequestBody) => Promise<any>
 ) {
@@ -19,7 +19,7 @@ export default function serviceActionCreator<RequestBody = undefined>(
     return async (
       dispatch: ThunkDispatch<any, any, any>,
       getState: () => unknown
-    ) => {
+    ): Promise<RequestBody | WebHttpError> => {
       if (traceActions.loading && typeof traceActions.loading === 'function') {
         dispatch(traceActions.loading())
       }
