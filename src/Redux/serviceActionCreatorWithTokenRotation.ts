@@ -1,51 +1,81 @@
-// import loginWithRefreshTokenService from './User/Services/loginWithRefreshToken.Service'
+import { WebHttpError } from '@am92/web-http'
+import { ThunkDispatch } from '@reduxjs/toolkit'
 
-// const loginWithRefreshTokenServiceDispatcher = loginWithRefreshTokenService()
+import { TraceActions } from './serviceActionCreator'
+import loginWithRefreshTokenService from './Auth/Services/loginWithRefreshToken.Service'
 
-// export default function serviceActionCreatorWithTokenRotation (actions, service) {
-//   return (data) => {
-//     return async (dispatch, getState) => {
-//       if (actions.loading && typeof actions.loading === 'function') {
-//         dispatch(actions.loading())
-//       }
+const loginWithRefreshTokenServiceDispatcher = loginWithRefreshTokenService()
 
-//       try {
-//         const response = await service(data)
-//         if (actions.success && typeof actions.success === 'function') {
-//           dispatch(actions.success(response))
-//         }
-//         return response
-//       } catch (serviceError) {
-//         if (serviceError.errorCode === 'User::TOKEN_EXPIRED') {
-//           await retryWithTokenRotation(actions, service, data, dispatch, getState)
-//         } else {
-//           if (actions.error && typeof actions.error === 'function') {
-//             dispatch(actions.error({ ...serviceError }))
-//           }
-//           return serviceError
-//         }
-//       }
-//     }
-//   }
-// }
+export default function serviceActionCreator<RequestData = void>(
+  traceActions: TraceActions,
+  service: (data: RequestData) => Promise<any>
+) {
+  return (data: RequestData) => {
+    return async (
+      dispatch: ThunkDispatch<any, any, any>,
+      getState: () => unknown
+    ): Promise<any | WebHttpError> => {
+      if (traceActions.loading && typeof traceActions.loading === 'function') {
+        dispatch(traceActions.loading())
+      }
 
-// async function retryWithTokenRotation (actions, service, data, dispatch, getState) {
-//   const tokenRotationResponse = await loginWithRefreshTokenServiceDispatcher(dispatch, getState)
+      const response = await service(data).catch(
+        async (error: WebHttpError) => {
+          if (error.errorCode === 'User::TOKEN_EXPIRED') {
+            return await retryWithTokenRotation<RequestData>(
+              traceActions,
+              service,
+              dispatch,
+              getState,
+              data
+            )
+          } else {
+            if (
+              traceActions.error &&
+              typeof traceActions.error === 'function'
+            ) {
+              dispatch(traceActions.error({ ...error }))
+            }
+            return error
+          }
+        }
+      )
 
-//   if (tokenRotationResponse._isCustomError) {
-//     return tokenRotationResponse
-//   }
+      if (traceActions.success && typeof traceActions.success === 'function') {
+        dispatch(traceActions.success(response))
+      }
 
-//   try {
-//     const response = await service(data)
-//     if (actions.success && typeof actions.success === 'function') {
-//       dispatch(actions.success(response))
-//     }
-//     return response
-//   } catch (error) {
-//     if (actions.error && typeof actions.error === 'function') {
-//       dispatch(actions.error({ ...error }))
-//     }
-//     return error
-//   }
-// }
+      return response
+    }
+  }
+}
+
+async function retryWithTokenRotation<RequestData = void>(
+  traceActions: TraceActions,
+  service: (data: RequestData) => Promise<any>,
+  dispatch: ThunkDispatch<any, any, any>,
+  getState: () => unknown,
+  data: RequestData
+): Promise<Response | WebHttpError> {
+  const tokenRotationResponse = await loginWithRefreshTokenServiceDispatcher(
+    dispatch,
+    getState
+  )
+
+  if (tokenRotationResponse instanceof WebHttpError) {
+    return tokenRotationResponse
+  }
+
+  const response = await service(data).catch((error: WebHttpError) => {
+    if (traceActions.error && typeof traceActions.error === 'function') {
+      dispatch(traceActions.error({ ...error }))
+    }
+    return error
+  })
+
+  if (traceActions.success && typeof traceActions.success === 'function') {
+    dispatch(traceActions.success(response))
+  }
+
+  return response
+}
