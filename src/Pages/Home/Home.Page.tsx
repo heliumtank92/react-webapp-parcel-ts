@@ -25,11 +25,10 @@ export default class HomePage extends PureComponent {
           alignItems: 'center',
           flexDirection: 'column',
           height: '100vh',
-          px: 'var(--ds-spacing-warm)',
-          bgcolor: 'common.black'
+          px: 'var(--ds-spacing-warm)'
         }}
       >
-        <DsTypography variant="bodyBoldLarge">Home Page</DsTypography>
+        <DsTypography variant="displayBoldLarge">Home Page</DsTypography>
         <DsImage srcSet={homeImage} style={{ width: '100%', height: 'auto' }} />
       </DsBox>
     )
