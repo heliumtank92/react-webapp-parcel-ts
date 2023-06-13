@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "prepare": "husky install",
-    "lintTS": "tsc --noEmit --traceResolution",
+    "lintTS": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
     "analyze": "pnpm run clean-and-copy && parcel build public/index.ejs --dist-dir build --reporter @parcel/reporter-bundle-analyzer",
     "start": "pnpm run clean-and-copy && parcel public/index.ejs --dist-dir build --open chrome",
