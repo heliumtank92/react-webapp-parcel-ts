@@ -1,4 +1,7 @@
-import WebHttp, { WebHttpRequestOptions } from '@am92/web-http'
+import WebHttp, {
+  WEB_HTTP_CONTEXT,
+  WebHttpRequestOptions
+} from '@am92/web-http'
 import { HANDSHAKE_ENABLED_HTTP } from '~/src/Configurations/WebHttp'
 
 const performHandshake = async () => {
@@ -19,7 +22,7 @@ const handshake = async (webHttp: WebHttp) => {
   const options: WebHttpRequestOptions = { url: '/handshake', method: 'GET' }
 
   try {
-    const storedPublicKey = webHttp.context.get('PUBLIC_KEY')
+    const storedPublicKey = webHttp.context.get(WEB_HTTP_CONTEXT.PUBLIC_KEY)
     if (storedPublicKey) {
       return
     }
@@ -28,7 +31,7 @@ const handshake = async (webHttp: WebHttp) => {
     const { data: body } = response
     const { data = {} } = body
     const { publicKey = '' } = data
-    webHttp.context.set('PUBLIC_KEY', publicKey)
+    webHttp.context.set(WEB_HTTP_CONTEXT.PUBLIC_KEY, publicKey)
   } catch (err) {
     console.log(err)
     throw err
