@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.0.7
     version: 2.0.7(@types/react@18.2.12)(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0)
   '@am92/web-http':
-    specifier: ^2.0.10
-    version: 2.0.10
+    specifier: ^2.0.11
+    version: 2.0.11
   '@parcel/service-worker':
     specifier: ^2.9.2
     version: 2.9.2
@@ -136,8 +136,8 @@ packages:
       - moment-jalaali
     dev: false
 
-  /@am92/web-http@2.0.10:
-    resolution: {integrity: sha512-mRhfw+6TpTOLVSYTjW2bJ/OSB7ZhBSn8l013QinagxhsgxyN2Vm1uqgGhzD/og5qKxVFA/a3CYgYn2boXUMIRA==}
+  /@am92/web-http@2.0.11:
+    resolution: {integrity: sha512-OmjZXhZ1xvH8pYriIi+E44X+H7pl7pKjHPo6SqeFjtEAH145sB8irNIEXK8O9R8Tmc8g7loCTG5n/9T46zqi2w==}
     dependencies:
       '@am92/jose-crypto-subtle': 2.0.2
       axios: 1.4.0
