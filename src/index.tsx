@@ -10,8 +10,6 @@ import '~/public/serviceWorkerRegistration'
 
 const container = document.getElementById('app')!
 const root = createRoot(container)
-let abc: number[] = [1, 2]
-console.log(abc.at(1))
 root.render(
   <React.StrictMode>
     <Provider store={AppStore}>
