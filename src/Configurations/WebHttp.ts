@@ -28,4 +28,4 @@ asHttp.context.set(WEB_HTTP_CONTEXT.API_KEY, AS_API_KEY)
 // }
 // export const webHttp = new WebHttp(AXIOS_HTTP_CONFIG, WEB_HTTP_CONFIG)
 
-export const HANDSHAKE_ENABLED_HTTP: WebHttp[] = [asHttp]
+export const HANDSHAKE_ENABLED_HTTP: WebHttp[] = []
