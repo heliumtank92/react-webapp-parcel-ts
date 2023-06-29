@@ -6,9 +6,9 @@
     "prepare": "husky install",
     "lintTS": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "analyze": "npm run clean-and-copy && parcel build public/index.ejs --dist-dir build --reporter @parcel/reporter-bundle-analyzer",
+    "analyze": "npm run clean-and-copy && parcel build public/index.ejs public/version.ejs --dist-dir build --reporter @parcel/reporter-bundle-analyzer",
     "start": "npm run clean-and-copy && parcel public/index.ejs --dist-dir build --open chrome",
-    "build": "npm run clean-and-copy && parcel build public/index.ejs --dist-dir build",
+    "build": "npm run clean-and-copy && parcel build public/index.ejs public/version.ejs --dist-dir build",
     "clean-and-copy": "rm -rf build .parcel-cache && npm run copy",
     "copy": "mkdir build && mkdir build/static && cp -r public/static/ build/static/ && cp public/robots.txt build/"
   },
@@ -70,7 +70,8 @@
           "(.*).webp$": "assets/images/$1{.hash}.webp",
           "(.*).jpg$": "assets/images/$1{.hash}.jpg",
           "(.*).jpeg$": "assets/images/$1{.hash}.jpeg",
-          "(.*).svg$": "assets/images/$1{.hash}.svg"
+          "(.*).svg$": "assets/images/$1{.hash}.svg",
+          "version.html": "version.json"
         }
       }
     }
