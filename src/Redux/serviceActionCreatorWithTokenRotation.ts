@@ -41,7 +41,11 @@ export default function serviceActionCreator<RequestData = void>(
         }
       )
 
-      if (traceActions.success && typeof traceActions.success === 'function') {
+      if (
+        !response._isCustomError &&
+        traceActions.success &&
+        typeof traceActions.success === 'function'
+      ) {
         dispatch(traceActions.success(response))
       }
 
@@ -73,7 +77,11 @@ async function retryWithTokenRotation<RequestData = void>(
     return error
   })
 
-  if (traceActions.success && typeof traceActions.success === 'function') {
+  if (
+    !response._isCustomError &&
+    traceActions.success &&
+    typeof traceActions.success === 'function'
+  ) {
     dispatch(traceActions.success(response))
   }
 
