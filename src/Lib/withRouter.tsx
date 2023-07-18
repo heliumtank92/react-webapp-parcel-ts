@@ -11,6 +11,12 @@ import {
   useSearchParams
 } from 'react-router-dom'
 
+/**
+ * Basic Interface to extend in components wrapping the below HOC.
+ *
+ * @export
+ * @interface IWithRouterProps
+ */
 export interface IWithRouterProps {
   searchParams: URLSearchParams
   setSearchParams: SetURLSearchParams
@@ -20,6 +26,13 @@ export interface IWithRouterProps {
   navigateTo: (route: To, options?: NavigateOptions) => void
 }
 
+/**
+ * HOC to provide routing features
+ *
+ * @export
+ * @param {React.ComponentType<any>} Child
+ * @return {*}  {React.ComponentType<any>}
+ */
 export default function withRouter(
   Child: React.ComponentType<any>
 ): React.ComponentType<any> {
