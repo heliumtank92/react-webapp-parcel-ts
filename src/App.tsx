@@ -1,32 +1,33 @@
 import React, { Component, Suspense } from 'react'
 import { connect } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
+import { ThunkDispatch } from '@reduxjs/toolkit'
 import {
   getTheme,
   DsCssBaseline,
   Experimental_CssVarsProvider as CssVarsProvider
 } from '@am92/react-design-system'
-// import { CONTEXT } from '@am92/web-http'
 
 import Loader from '~/src/Components/Loader'
 
-import { getThemeModeSelector } from '~/src/Redux/Theme/Selectors'
 import {
   getAccessTokenSelector,
   getRefreshTokenSelector
 } from './Redux/Auth/Selectors'
 
 import getAppRouter from '~/src/Configurations/getAppRouter'
-// import { asHttp } from '~/src/Configurations/WebHttp'
 
 import performHandshake from '~/src/Services/performHandshake'
 
-import { PALETTE, FONT_FAMILY } from '~/src/Constants/THEME'
-import { ThunkDispatch } from '@reduxjs/toolkit'
+import {
+  PALETTE,
+  FONT_FAMILY,
+  THEME_MODE_STORAGE_KEY,
+  DEFAULT_THEME_MODE
+} from '~/src/Constants/THEME'
 
 type Props = {
   persisted: boolean
-  themeMode?: 'light' | 'dark'
   accessToken?: string
   refreshToken?: string
 }
@@ -42,6 +43,14 @@ const DefaultState: State = {
 class App extends Component<Props, State> {
   state = DefaultState
 
+  constructor(props: Props) {
+    super(props)
+
+    // If you dont want to respect user selected theme
+    // and set default theme to one set in THEME constants then uncomment the line
+    // this.resetUserThemeToDefault()
+  }
+
   componentDidMount() {
     this.initialize()
   }
@@ -54,10 +63,13 @@ class App extends Component<Props, State> {
     }
   }
 
+  resetUserThemeToDefault = () => {
+    window.localStorage.removeItem(THEME_MODE_STORAGE_KEY)
+  }
+
   render() {
     const {
-      persisted,
-      themeMode = 'dark'
+      persisted
       // accessToken,
       // refreshToken
     } = this.props
@@ -68,7 +80,6 @@ class App extends Component<Props, State> {
     if (persisted) {
       const router = getAppRouter()
       children = <RouterProvider router={router} />
-      window.localStorage.setItem('mui-mode', themeMode)
 
       // asHttp.context.set(CONTEXT.ACCESS_TOKEN, accessToken)
       // asHttp.context.set(CONTEXT.REFRESH_TOKEN, refreshToken)
@@ -77,8 +88,8 @@ class App extends Component<Props, State> {
     return (
       <CssVarsProvider
         theme={AppTheme}
-        defaultMode={themeMode}
-        modeStorageKey="mui-mode"
+        defaultMode={DEFAULT_THEME_MODE}
+        modeStorageKey={THEME_MODE_STORAGE_KEY}
       >
         <DsCssBaseline enableColorScheme>
           <Suspense fallback={<Loader />}>{children}</Suspense>
@@ -89,12 +100,10 @@ class App extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: any) => {
-  const themeMode = getThemeModeSelector(state)
   const accessToken = getAccessTokenSelector(state)
   const refreshToken = getRefreshTokenSelector(state)
 
   return {
-    themeMode,
     accessToken,
     refreshToken
   }

@@ -1,6 +1,9 @@
 import React from 'react'
 import {
+  NavigateFunction,
   NavigateOptions,
+  Params,
+  SetURLSearchParams,
   To,
   useLocation,
   useNavigate,
@@ -8,9 +11,18 @@ import {
   useSearchParams
 } from 'react-router-dom'
 
+export interface IWithRouterProps {
+  searchParams: URLSearchParams
+  setSearchParams: SetURLSearchParams
+  navigate: NavigateFunction
+  location: Location
+  params: Readonly<Params<string>>
+  navigateTo: (route: To, options?: NavigateOptions) => void
+}
+
 export default function withRouter(
-  Child: React.ElementType<any>
-): React.ElementType<any> {
+  Child: React.ComponentType<any>
+): React.ComponentType<any> {
   return (props: any): React.JSX.Element => {
     const location = useLocation()
     const navigate = useNavigate()
