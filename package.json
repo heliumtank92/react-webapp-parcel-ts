@@ -16,16 +16,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@am92/react-design-system": "^2.0.14",
-    "@am92/web-http": "^2.0.20",
+    "@am92/react-design-system": "^2.0.18",
+    "@am92/web-http": "^2.0.21",
     "@parcel/service-worker": "^2.9.3",
     "@reduxjs/toolkit": "^1.9.5",
-    "core-js": "^3.31.0",
+    "core-js": "^3.31.1",
     "localforage": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
-    "react-router-dom": "^6.14.0",
+    "react-router-dom": "^6.14.2",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0"
   },
@@ -36,9 +36,9 @@
     "@parcel/packager-xml": "^2.9.3",
     "@parcel/reporter-bundle-analyzer": "^2.9.3",
     "@parcel/transformer-raw": "^2.9.3",
-    "@types/node": "^20.3.2",
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
+    "@types/node": "^20.4.2",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
     "buffer": "^6.0.3",
     "custom-env": "^2.0.2",
     "husky": "^8.0.3",
@@ -49,7 +49,7 @@
     "prop-types": "^15.8.1",
     "react-jsx": "^1.0.0",
     "sharp": "^0.31.1",
-    "typescript": "^5.1.5"
+    "typescript": "^5.1.6"
   },
   "parcel-namer-rewrite": {
     "profiles": {
