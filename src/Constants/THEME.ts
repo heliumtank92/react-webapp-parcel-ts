@@ -1,5 +1,5 @@
 import { DsPalette, SupportedColorScheme } from '@am92/react-design-system'
-import { APP_TITLE } from '../Configurations/env'
+import { APP_TITLE } from '~/src/Configurations/env'
 
 export const PALETTE: DsPalette = {}
 
