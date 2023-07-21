@@ -33,6 +33,7 @@ class HomePage extends React.Component<IHomePageProps> {
   }
 
   public render() {
+    console.log('to be removed')
     const { themeMode } = this.props
     return (
       <DsBox
