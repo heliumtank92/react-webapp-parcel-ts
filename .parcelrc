@@ -3,5 +3,8 @@
   "namers":  ["parcel-namer-rewrite"],
   "transformers": {
     "*.ejs": ["parcel-transformer-ejs"]
+  },
+  "optimizers": {
+    "*.js": ["@parcel/optimizer-terser"]
   }
 }
