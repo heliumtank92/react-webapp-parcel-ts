@@ -1,7 +1,6 @@
 {
   "compress": {
-    "drop_console": true,
-    "toplevel": true
+    "drop_console": true
   },
   "safari10": true
 }
