@@ -72,6 +72,8 @@
           "(.*).jpg$": "assets/images/$1{.hash}.jpg",
           "(.*).jpeg$": "assets/images/$1{.hash}.jpeg",
           "(.*).svg$": "assets/images/$1{.hash}.svg",
+          "(.*).gif$": "assets/images/$1{.hash}.gif",
+          "(.*).avif$": "assets/images/$1{.hash}.avif",
           "version.html": "version.json"
         }
       }
