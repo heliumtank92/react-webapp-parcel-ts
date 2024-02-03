@@ -82,6 +82,9 @@ devDependencies:
   custom-env:
     specifier: ^2.0.2
     version: 2.0.2
+  husky:
+    specifier: ^9.0.10
+    version: 9.0.10
   parcel:
     specifier: ^2.9.3
     version: 2.9.3(typescript@5.2.2)
@@ -2731,6 +2734,12 @@ packages:
       domhandler: 4.3.1
       domutils: 2.8.0
       entities: 3.0.1
+    dev: true
+
+  /husky@9.0.10:
+    resolution: {integrity: sha512-TQGNknoiy6bURzIO77pPRu+XHi6zI7T93rX+QnJsoYFf3xdjKOur+IlfqzJGMHIK/wXrLg+GsvMs8Op7vI2jVA==}
+    engines: {node: '>=18'}
+    hasBin: true
     dev: true
 
   /iconv-lite@0.4.24:

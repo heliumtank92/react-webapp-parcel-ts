@@ -1,0 +1,2 @@
+pnpm run --silent test
+pnpm run --silent lint
