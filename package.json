@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "prepare": "husky install",
     "lintTS": "tsc --noEmit",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "analyze": "npm run clean-and-copy && parcel build public/index.ejs public/version.ejs --dist-dir build --reporter @parcel/reporter-bundle-analyzer",
     "start": "npm run clean-and-copy && parcel public/index.ejs --dist-dir build --open chrome",
     "build": "npm run clean-and-copy && parcel build public/index.ejs public/version.ejs --dist-dir build",
@@ -43,7 +42,6 @@
     "@types/react-dom": "^18.2.10",
     "buffer": "^6.0.3",
     "custom-env": "^2.0.2",
-    "husky": "^8.0.3",
     "parcel": "^2.9.3",
     "parcel-config-pwa-manifest": "^0.1.6",
     "parcel-namer-rewrite": "2.0.0-rc.3",
