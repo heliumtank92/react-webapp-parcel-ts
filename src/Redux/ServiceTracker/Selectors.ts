@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit'
 
 export const SLICE_NAME = 'serviceTracker'
 
-const select = (state: any) => state[SLICE_NAME]
+// const select = (state: any) => state[SLICE_NAME]
 
 export const getServiceSelector = (state: any, serviceKey: string) => {
   return createSelector(

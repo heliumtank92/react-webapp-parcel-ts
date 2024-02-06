@@ -1,9 +1,9 @@
-import { WebHttpError } from '@am92/web-http'
 import {
-  ActionCreatorWithPayload,
   ActionCreatorWithoutPayload,
+  ActionCreatorWithPayload,
   ThunkDispatch
 } from '@reduxjs/toolkit'
+import { WebHttpError } from '@am92/web-http'
 
 export type TraceActions = {
   loading: ActionCreatorWithoutPayload<string>
@@ -17,8 +17,7 @@ export default function serviceActionCreator<RequestData = void>(
 ) {
   return (data: RequestData) => {
     return async (
-      dispatch: ThunkDispatch<any, any, any>,
-      getState: () => unknown
+      dispatch: ThunkDispatch<any, any, any>
     ): Promise<any | WebHttpError> => {
       if (traceActions.loading && typeof traceActions.loading === 'function') {
         dispatch(traceActions.loading())

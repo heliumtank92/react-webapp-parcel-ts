@@ -1,7 +1,10 @@
 import { WEB_HTTP_CONTEXT, WebHttpRequestOptions } from '@am92/web-http'
-import { asHttp } from '~/src/Configurations/WebHttp'
+
+import { loginServiceName, loginTraceActions } from '../Actions'
+
 import serviceActionCreator from '~/src/Redux/serviceActionCreator'
-import { loginTraceActions, loginServiceName } from '../Actions'
+
+import { asHttp } from '~/src/Configurations/WebHttp'
 
 export type LoginRequestData = {
   username: string

@@ -1,8 +1,9 @@
-import { WebHttpError } from '@am92/web-http'
 import { ThunkDispatch } from '@reduxjs/toolkit'
+import { WebHttpError } from '@am92/web-http'
+
+import loginWithRefreshTokenService from './Auth/Services/loginWithRefreshToken.Service'
 
 import { TraceActions } from './serviceActionCreator'
-import loginWithRefreshTokenService from './Auth/Services/loginWithRefreshToken.Service'
 
 const loginWithRefreshTokenServiceDispatcher = loginWithRefreshTokenService()
 
@@ -61,10 +62,8 @@ async function retryWithTokenRotation<RequestData = void>(
   getState: () => unknown,
   data: RequestData
 ): Promise<Response | WebHttpError> {
-  const tokenRotationResponse = await loginWithRefreshTokenServiceDispatcher(
-    dispatch,
-    getState
-  )
+  const tokenRotationResponse =
+    await loginWithRefreshTokenServiceDispatcher(dispatch)
 
   if (tokenRotationResponse instanceof WebHttpError) {
     return tokenRotationResponse

@@ -23,7 +23,7 @@ export interface IWithColorSchemeProps {
 export default function withColorScheme(
   Child: React.ComponentType<any>
 ): React.ComponentType<any> {
-  return (props: any): React.JSX.Element => {
+  return function withColorSchemeWrapper(props: any): React.JSX.Element {
     const { mode, setMode } = useColorScheme()
 
     return <Child {...props} themeMode={mode} setThemeMode={setMode} />

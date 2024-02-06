@@ -3,11 +3,12 @@ import WebHttp, {
   WebHttpAxiosConfig,
   WebHttpConfig
 } from '@am92/web-http'
+
 import {
   AS_API_DOMAIN,
   AS_API_KEY,
-  AS_ENABLE_CRPTOGRAPHY,
-  AS_API_TIMEOUT
+  AS_API_TIMEOUT,
+  AS_ENABLE_CRPTOGRAPHY
 } from './env'
 
 const AS_AXIOS_HTTP_CONFIG: WebHttpAxiosConfig = {

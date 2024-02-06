@@ -6,6 +6,7 @@ import {
   DsToggle,
   DsTypography
 } from '@am92/react-design-system'
+
 import withColorScheme, {
   IWithColorSchemeProps
 } from '~/src/Lib/withColorScheme'
@@ -46,7 +47,7 @@ class HomePage extends React.Component<IHomePageProps> {
         }}
       >
         <DsImage srcSet={homeImage} style={{ width: '100%', height: 'auto' }} />
-        <DsTypography variant="displayBoldLarge">Home Page</DsTypography>
+        <DsTypography variant='displayBoldLarge'>Home Page</DsTypography>
         <DsBox
           sx={{
             display: 'flex',
@@ -56,11 +57,11 @@ class HomePage extends React.Component<IHomePageProps> {
           }}
         >
           <DsToggle
-            name="Dark Mode"
+            name='Dark Mode'
             value={themeMode === 'dark'}
             onChange={this.handleModeChange}
           />
-          <DsRemixIcon className="ri-contrast-2-line" />
+          <DsRemixIcon className='ri-contrast-2-line' />
         </DsBox>
       </DsBox>
     )

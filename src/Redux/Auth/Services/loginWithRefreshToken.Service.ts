@@ -1,10 +1,13 @@
 import { WEB_HTTP_CONTEXT, WebHttpRequestOptions } from '@am92/web-http'
-import { asHttp } from '~/src/Configurations/WebHttp'
-import serviceActionCreator from '~/src/Redux/serviceActionCreator'
+
 import {
-  loginWithRefreshTokenTraceActions,
-  loginWithRefreshTokenServiceName
+  loginWithRefreshTokenServiceName,
+  loginWithRefreshTokenTraceActions
 } from '../Actions'
+
+import serviceActionCreator from '~/src/Redux/serviceActionCreator'
+
+import { asHttp } from '~/src/Configurations/WebHttp'
 
 async function loginWithRefreshToken() {
   const currentRefreshToken = asHttp.context.get(WEB_HTTP_CONTEXT.REFRESH_TOKEN)
