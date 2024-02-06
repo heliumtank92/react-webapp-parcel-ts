@@ -1,4 +1,2 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-pnpm lintTS
+pnpm run --silent test
+pnpm run --silent lint

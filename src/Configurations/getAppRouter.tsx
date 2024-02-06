@@ -1,9 +1,9 @@
 import React from 'react'
-import { RouteObject, createBrowserRouter } from 'react-router-dom'
-
-import APP_ROUTES from '~/src/Constants/APP_ROUTES'
+import { createBrowserRouter, RouteObject } from 'react-router-dom'
 
 import MainLayout from '~/src/Layouts/Main.Layout'
+
+import APP_ROUTES from '~/src/Constants/APP_ROUTES'
 
 const HomePage = React.lazy(() => import('~/src/Pages/Home/Home.Page'))
 const NotFoundPage = React.lazy(

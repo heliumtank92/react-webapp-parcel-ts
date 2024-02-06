@@ -1,8 +1,5 @@
-import {
-  ActionReducerMapBuilder,
-  CreateSliceOptions,
-  createSlice
-} from '@reduxjs/toolkit'
+import { createSlice, CreateSliceOptions } from '@reduxjs/toolkit'
+
 import { SLICE_NAME } from './Selectors'
 
 const INITIAL_STATE = {
@@ -15,7 +12,7 @@ const sliceOptions: CreateSliceOptions = {
   name: SLICE_NAME,
   initialState: INITIAL_STATE,
   reducers: {},
-  extraReducers: (builder: ActionReducerMapBuilder<any>): void => {}
+  extraReducers: () => {}
 }
 
 const slice = createSlice(sliceOptions)

@@ -1,7 +1,10 @@
 import { WEB_HTTP_CONTEXT, WebHttpRequestOptions } from '@am92/web-http'
-import { asHttp } from '~/src/Configurations/WebHttp'
+
+import { logoutServiceName, logoutTraceActions } from '../Actions'
+
 import serviceActionCreatorWithTokenRotation from '~/src/Redux/serviceActionCreatorWithTokenRotation'
-import { logoutTraceActions, logoutServiceName } from '../Actions'
+
+import { asHttp } from '~/src/Configurations/WebHttp'
 
 async function logout() {
   const refreshToken = asHttp.context.get(WEB_HTTP_CONTEXT.REFRESH_TOKEN)

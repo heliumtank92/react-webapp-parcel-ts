@@ -1,11 +1,10 @@
 import React, { Component, Suspense } from 'react'
 import { connect } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
-import { ThunkDispatch } from '@reduxjs/toolkit'
 import {
-  getTheme,
   DsCssBaseline,
-  Experimental_CssVarsProvider as CssVarsProvider
+  Experimental_CssVarsProvider as CssVarsProvider,
+  getTheme
 } from '@am92/react-design-system'
 
 import Loader from '~/src/Components/Loader'
@@ -14,17 +13,15 @@ import {
   getAccessTokenSelector,
   getRefreshTokenSelector
 } from './Redux/Auth/Selectors'
-
-import getAppRouter from '~/src/Configurations/getAppRouter'
-
 import performHandshake from '~/src/Services/performHandshake'
 
 import {
-  PALETTE,
+  DEFAULT_THEME_MODE,
   FONT_FAMILY,
-  THEME_MODE_STORAGE_KEY,
-  DEFAULT_THEME_MODE
+  PALETTE,
+  THEME_MODE_STORAGE_KEY
 } from '~/src/Constants/THEME'
+import getAppRouter from '~/src/Configurations/getAppRouter'
 
 type Props = {
   persisted: boolean
@@ -109,8 +106,4 @@ const mapStateToProps = (state: any) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
-  actions: {}
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, null)(App)

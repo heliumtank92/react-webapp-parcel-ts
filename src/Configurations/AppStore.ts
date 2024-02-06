@@ -1,16 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
-import reducers, { persistedReducers } from '~/src/Redux/Reducers'
+import localforage from 'localforage'
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
+  persistReducer,
+  persistStore,
   PURGE,
-  REGISTER
+  REGISTER,
+  REHYDRATE
 } from 'redux-persist'
-import localforage from 'localforage'
+
+import reducers, { persistedReducers } from '~/src/Redux/Reducers'
 
 const persistConfig = {
   key: process.env.APP_TITLE || 'APP_TITLE',

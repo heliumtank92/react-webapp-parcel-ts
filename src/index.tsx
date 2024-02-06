@@ -1,10 +1,11 @@
 import React from 'react'
-import { Provider } from 'react-redux'
 import { createRoot } from 'react-dom/client'
+import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import AppStore, { PersistedAppStore } from '~/src/Configurations/AppStore'
 import App from './App'
+
+import AppStore, { PersistedAppStore } from '~/src/Configurations/AppStore'
 
 // import '~/public/serviceWorkerRegistration'
 
