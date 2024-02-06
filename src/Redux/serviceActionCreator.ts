@@ -1,44 +1,45 @@
-import {
-  ActionCreatorWithoutPayload,
-  ActionCreatorWithPayload,
-  ThunkDispatch
-} from '@reduxjs/toolkit'
+import { PayloadActionCreator } from '@reduxjs/toolkit'
 import { WebHttpError } from '@am92/web-http'
 
-export type TraceActions = {
-  loading: ActionCreatorWithoutPayload<string>
-  success: ActionCreatorWithPayload<any, string>
-  error: ActionCreatorWithPayload<WebHttpError, string>
+import { TAppDispatch } from '../Configurations/AppStore'
+
+export type TraceActions<TResponse> = {
+  loading: PayloadActionCreator<undefined, string>
+  success: PayloadActionCreator<TResponse, string>
+  error: PayloadActionCreator<WebHttpError, string>
 }
 
-export default function serviceActionCreator<RequestData = void>(
-  traceActions: TraceActions,
-  service: (data: RequestData) => Promise<any>
+export default function serviceActionCreator<
+  RequestData = void,
+  Response = unknown
+>(
+  traceActions: TraceActions<Response>,
+  service: (data: RequestData) => Promise<Response>
 ) {
   return (data: RequestData) => {
-    return async (
-      dispatch: ThunkDispatch<any, any, any>
-    ): Promise<any | WebHttpError> => {
+    return async (dispatch: TAppDispatch): Promise<Response | WebHttpError> => {
       if (traceActions.loading && typeof traceActions.loading === 'function') {
         dispatch(traceActions.loading())
       }
 
-      const response = await service(data).catch(error => {
-        if (traceActions.error && typeof traceActions.error === 'function') {
-          dispatch(traceActions.error(error))
+      try {
+        const response = await service(data)
+
+        if (
+          traceActions.success &&
+          typeof traceActions.success === 'function'
+        ) {
+          dispatch(traceActions.success(response))
         }
-        return error
-      })
 
-      if (
-        !response._isCustomError &&
-        traceActions.success &&
-        typeof traceActions.success === 'function'
-      ) {
-        dispatch(traceActions.success(response))
+        return response
+      } catch (error: unknown) {
+        if (traceActions.error && typeof traceActions.error === 'function') {
+          dispatch(traceActions.error(error as WebHttpError))
+        }
+
+        return error as WebHttpError
       }
-
-      return response
     }
   }
 }

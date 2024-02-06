@@ -11,7 +11,7 @@ import {
   REHYDRATE
 } from 'redux-persist'
 
-import reducers, { persistedReducers } from '~/src/Redux/Reducers'
+import reducers, { persistedReducers, TReducers } from '~/src/Redux/Reducers'
 
 const persistConfig = {
   key: process.env.APP_TITLE || 'APP_TITLE',
@@ -21,7 +21,7 @@ const persistConfig = {
 }
 
 const AppStore = configureStore({
-  reducer: persistReducer(persistConfig, reducers),
+  reducer: persistReducer<TReducers>(persistConfig, reducers),
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -34,4 +34,9 @@ const AppStore = configureStore({
 const PersistedAppStore = persistStore(AppStore)
 
 export default AppStore
-export { PersistedAppStore }
+
+type TAppSore = ReturnType<typeof AppStore.getState>
+
+type TAppDispatch = typeof AppStore.dispatch
+
+export { TAppSore, TAppDispatch, PersistedAppStore }

@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
 import {
   DsCssBaseline,
@@ -21,15 +21,14 @@ import {
   PALETTE,
   THEME_MODE_STORAGE_KEY
 } from '~/src/Constants/THEME'
+import { TAppSore } from './Configurations/AppStore'
 import getAppRouter from '~/src/Configurations/getAppRouter'
 
-type Props = {
+interface Props extends PropsFromRedux {
   persisted: boolean
-  accessToken?: string
-  refreshToken?: string
 }
 
-type State = {
+interface State {
   hasError: boolean
 }
 
@@ -96,7 +95,7 @@ class App extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: TAppSore) => {
   const accessToken = getAccessTokenSelector(state)
   const refreshToken = getRefreshTokenSelector(state)
 
@@ -106,4 +105,8 @@ const mapStateToProps = (state: any) => {
   }
 }
 
-export default connect(mapStateToProps, null)(App)
+const connector = connect(mapStateToProps, null)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(App)

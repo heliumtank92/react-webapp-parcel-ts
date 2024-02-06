@@ -1,64 +1,65 @@
-import { ThunkDispatch } from '@reduxjs/toolkit'
 import { WebHttpError } from '@am92/web-http'
 
 import loginWithRefreshTokenService from './Auth/Services/loginWithRefreshToken.Service'
 
 import { TraceActions } from './serviceActionCreator'
 
+import { TAppDispatch } from '../Configurations/AppStore'
+
 const loginWithRefreshTokenServiceDispatcher = loginWithRefreshTokenService()
 
-export default function serviceActionCreator<RequestData = void>(
-  traceActions: TraceActions,
-  service: (data: RequestData) => Promise<any>
+export default function serviceActionCreator<
+  RequestData = void,
+  Response = unknown
+>(
+  traceActions: TraceActions<Response>,
+  service: (data: RequestData) => Promise<Response>
 ) {
   return (data: RequestData) => {
     return async (
-      dispatch: ThunkDispatch<any, any, any>,
+      dispatch: TAppDispatch,
       getState: () => unknown
-    ): Promise<any | WebHttpError> => {
+    ): Promise<Response | WebHttpError> => {
       if (traceActions.loading && typeof traceActions.loading === 'function') {
         dispatch(traceActions.loading())
       }
 
-      const response = await service(data).catch(
-        async (error: WebHttpError) => {
-          if (error.errorCode === 'User::TOKEN_EXPIRED') {
-            return await retryWithTokenRotation<RequestData>(
-              traceActions,
-              service,
-              dispatch,
-              getState,
-              data
-            )
-          } else {
-            if (
-              traceActions.error &&
-              typeof traceActions.error === 'function'
-            ) {
-              dispatch(traceActions.error({ ...error }))
-            }
-            return error
-          }
+      try {
+        const response = await service(data)
+
+        if (
+          traceActions.success &&
+          typeof traceActions.success === 'function'
+        ) {
+          dispatch(traceActions.success(response))
         }
-      )
 
-      if (
-        !response._isCustomError &&
-        traceActions.success &&
-        typeof traceActions.success === 'function'
-      ) {
-        dispatch(traceActions.success(response))
+        return response
+      } catch (error: unknown) {
+        const err = error as WebHttpError
+        if (err.errorCode === 'User::TOKEN_EXPIRED') {
+          return await retryWithTokenRotation<RequestData, Response>(
+            traceActions,
+            service,
+            dispatch,
+            getState,
+            data
+          )
+        } else {
+          if (traceActions.error && typeof traceActions.error === 'function') {
+            dispatch(traceActions.error({ ...err }))
+          }
+          return err
+        }
       }
-
-      return response
     }
   }
 }
 
-async function retryWithTokenRotation<RequestData = void>(
-  traceActions: TraceActions,
-  service: (data: RequestData) => Promise<any>,
-  dispatch: ThunkDispatch<any, any, any>,
+async function retryWithTokenRotation<RequestData = void, Response = unknown>(
+  traceActions: TraceActions<Response>,
+  service: (data: RequestData) => Promise<Response>,
+  dispatch: TAppDispatch,
   getState: () => unknown,
   data: RequestData
 ): Promise<Response | WebHttpError> {
@@ -69,20 +70,17 @@ async function retryWithTokenRotation<RequestData = void>(
     return tokenRotationResponse
   }
 
-  const response = await service(data).catch((error: WebHttpError) => {
-    if (traceActions.error && typeof traceActions.error === 'function') {
-      dispatch(traceActions.error({ ...error }))
+  try {
+    const response = await service(data)
+    if (traceActions.success && typeof traceActions.success === 'function') {
+      dispatch(traceActions.success(response))
     }
-    return error
-  })
 
-  if (
-    !response._isCustomError &&
-    traceActions.success &&
-    typeof traceActions.success === 'function'
-  ) {
-    dispatch(traceActions.success(response))
+    return response
+  } catch (error: unknown) {
+    if (traceActions.error && typeof traceActions.error === 'function') {
+      dispatch(traceActions.error({ ...(error as WebHttpError) }))
+    }
+    return error as WebHttpError
   }
-
-  return response
 }

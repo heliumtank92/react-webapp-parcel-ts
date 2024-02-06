@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  Location,
   NavigateFunction,
   NavigateOptions,
   Params,
@@ -30,13 +31,13 @@ export interface IWithRouterProps {
  * HOC to provide routing features
  *
  * @export
- * @param {React.ComponentType<any>} Child
- * @return {*}  {React.ComponentType<any>}
+ * @param {React.ComponentType<P & IWithRouterProps>} Child
+ * @return {*}  {React.ComponentType<P & IWithRouterProps>}
  */
-export default function withRouter(
-  Child: React.ComponentType<any>
-): React.ComponentType<any> {
-  return function withRouterWrapper(props: any): React.JSX.Element {
+export default function withRouter<P = unknown>(
+  Child: React.ComponentType<P & IWithRouterProps>
+): React.ComponentType<P & IWithRouterProps> {
+  return function withRouterWrapper(props: P): React.JSX.Element {
     const location = useLocation()
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()

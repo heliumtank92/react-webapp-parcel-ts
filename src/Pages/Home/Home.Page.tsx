@@ -9,7 +9,7 @@ import {
 
 import withColorScheme, {
   IWithColorSchemeProps
-} from '~/src/Lib/withColorScheme'
+} from '~/src/Hocs/withColorScheme'
 
 const homeImage = [
   {
@@ -30,7 +30,7 @@ class HomePage extends React.Component<IHomePageProps> {
   handleModeChange = (name: string, value: boolean) => {
     const { setThemeMode } = this.props
     const newMode = value ? 'dark' : 'light'
-    setThemeMode(newMode)
+    setThemeMode && setThemeMode(newMode)
   }
 
   public render() {
@@ -68,4 +68,4 @@ class HomePage extends React.Component<IHomePageProps> {
   }
 }
 
-export default withColorScheme(HomePage)
+export default withColorScheme<IHomePageProps>(HomePage)

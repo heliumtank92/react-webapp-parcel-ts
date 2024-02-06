@@ -1,18 +1,19 @@
 import { createSlice, CreateSliceOptions } from '@reduxjs/toolkit'
 
 import { SLICE_NAME } from './Selectors'
+import { INITIAL_STATE, T_AUTH_REDUCER } from './TYPES'
 
-const INITIAL_STATE = {
-  isLoggedIn: false,
-  accessToken: '',
-  refreshToken: ''
-}
-
-const sliceOptions: CreateSliceOptions = {
+const sliceOptions: CreateSliceOptions<T_AUTH_REDUCER> = {
   name: SLICE_NAME,
   initialState: INITIAL_STATE,
   reducers: {},
-  extraReducers: () => {}
+  extraReducers: () => {
+    // (builder: ActionReducerMapBuilder<T_AUTH_REDUCER>): void => {
+    // builder.addCase(
+    // 'sample',
+    // (state, { payload }) => {}
+    // )
+  }
 }
 
 const slice = createSlice(sliceOptions)
