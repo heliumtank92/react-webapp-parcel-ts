@@ -8,8 +8,8 @@ import { SupportedColorScheme, useColorScheme } from '@am92/react-design-system'
  * @interface IWithColorSchemeProps
  */
 export interface IWithColorSchemeProps {
-  themeMode?: SupportedColorScheme
-  setThemeMode?: (mode: SupportedColorScheme) => void
+  colorScheme?: SupportedColorScheme
+  setColorScheme?: (mode: SupportedColorScheme) => void
 }
 
 /**
@@ -27,7 +27,11 @@ export default function withColorScheme<P = unknown>(
     const { colorScheme, setColorScheme } = useColorScheme()
 
     return (
-      <Child {...props} themeMode={colorScheme} setThemeMode={setColorScheme} />
+      <Child
+        {...props}
+        colorScheme={colorScheme}
+        setColorScheme={setColorScheme}
+      />
     )
   }
 }
