@@ -23,6 +23,6 @@ const reducers: ReducersMapObject<TReducers> = {
   [ThemeSliceName]: ThemeReducer
 }
 
-export default combineReducers<TReducers>(reducers)
+export default combineReducers<ReducersMapObject<TReducers>>(reducers)
 
 export const persistedReducers: (keyof TReducers)[] = []
