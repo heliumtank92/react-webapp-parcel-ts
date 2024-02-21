@@ -1,17 +1,19 @@
 import { createSelector } from '@reduxjs/toolkit'
 
+import { TAppSore } from '~/src/Configurations/AppStore'
+
 export const SLICE_NAME = 'serviceTracker'
 
-// const select = (state: any) => state[SLICE_NAME]
+// const select = (state: TAppSore) => state[SLICE_NAME]
 
-export const getServiceSelector = (state: any, serviceKey: string) => {
+export const getServiceSelector = (state: TAppSore, serviceKey: string) => {
   return createSelector(
-    (state: any) => state[SLICE_NAME][serviceKey],
+    (state: TAppSore) => state[SLICE_NAME][serviceKey],
     serviceKeyValue => serviceKeyValue
   )(state)
 }
 
-export const isServiceLoading = (state: any, serviceKeys: string[]) => {
+export const isServiceLoading = (state: TAppSore, serviceKeys: string[]) => {
   const loading = serviceKeys.reduce((boolean, serviceKey) => {
     return boolean || getServiceSelector(state, serviceKey) === 'LOADING'
   }, false)
