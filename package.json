@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@am92/react-design-system": "^2.2.11",
+    "@am92/react-design-system": "^2.4.2",
     "@am92/web-http": "^2.0.26",
     "@parcel/service-worker": "^2.11.0",
     "@reduxjs/toolkit": "^2.2.1",
@@ -95,5 +95,8 @@
         }
       }
     }
+  },
+  "@parcel/resolver-default": {
+    "packageExports": true
   }
 }
