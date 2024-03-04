@@ -9,7 +9,10 @@
       "baseIcon": "./public/favicon.svg",
       "genFavicons": true,
       "genSafariPinnedTab": true,
-      "purpose": ["any", "maskable"]
+      "purpose": [
+        "any",
+        "maskable"
+      ]
     }
   },
   "development": {
@@ -24,4 +27,3 @@
     "disabled": true
   }
 }
-

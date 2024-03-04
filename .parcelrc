@@ -1,10 +1,18 @@
 {
-  "extends": ["@parcel/config-default"],
-  "namers":  ["parcel-namer-rewrite"],
+  "extends": [
+    "@parcel/config-default"
+  ],
+  "namers": [
+    "parcel-namer-rewrite"
+  ],
   "transformers": {
-    "*.ejs": ["parcel-transformer-ejs"]
+    "*.ejs": [
+      "parcel-transformer-ejs"
+    ]
   },
   "optimizers": {
-    "*.js": ["@parcel/optimizer-terser"]
+    "*.js": [
+      "@parcel/optimizer-terser"
+    ]
   }
 }
