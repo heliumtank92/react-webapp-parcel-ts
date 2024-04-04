@@ -35,8 +35,8 @@ export interface IWithRouterProps {
  * @return {*}  {React.ComponentType<P & IWithRouterProps>}
  */
 export default function withRouter<P = unknown>(
-  Child: React.ComponentType<P & IWithRouterProps>
-): React.ComponentType<P & IWithRouterProps> {
+  Child: React.ComponentType<P>
+): React.ComponentType<any> {
   return function withRouterWrapper(props: P): React.JSX.Element {
     const location = useLocation()
     const navigate = useNavigate()

@@ -22,7 +22,7 @@ export interface IWithColorSchemeProps {
 
 export default function withColorScheme<P = unknown>(
   Child: React.ComponentType<P & IWithColorSchemeProps>
-): React.ComponentType<P & IWithColorSchemeProps> {
+): React.ComponentType<any> {
   return function withColorSchemeWrapper(props: P) {
     const { colorScheme, setColorScheme } = useColorScheme()
 

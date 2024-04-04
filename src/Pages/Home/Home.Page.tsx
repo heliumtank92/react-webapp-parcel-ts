@@ -9,6 +9,8 @@ import {
   SupportedColorScheme
 } from '@am92/react-design-system'
 
+import withRouter, { IWithRouterProps } from '~/src/Hocs/withRouter'
+
 import { setThemeSchemeAction } from '~/src/Redux/Theme/Actions'
 import { getThemeReducer } from '~/src/Redux/Theme/Selectors'
 
@@ -27,7 +29,7 @@ const homeImage = [
     as: 'image/png'
   }
 ]
-interface IHomePageProps extends PropsFromRedux {}
+interface IHomePageProps extends PropsFromRedux, IWithRouterProps {}
 
 class HomePage extends React.Component<IHomePageProps> {
   handleSchemeChange = (name: string, value: boolean) => {
@@ -92,4 +94,4 @@ const connector = connect(mapStateToProps, mapDispatchToProps)
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-export default connector(HomePage)
+export default connector(withRouter(HomePage))
