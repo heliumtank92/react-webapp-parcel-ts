@@ -9,31 +9,21 @@ import {
   SupportedColorScheme
 } from '@am92/react-design-system'
 
+import withRouter, { IWithRouterProps } from '~/src/Hocs/withRouter'
+
 import { setThemeSchemeAction } from '~/src/Redux/Theme/Actions'
 import { getThemeReducer } from '~/src/Redux/Theme/Selectors'
 
 import { TAppDispatch, TAppSore } from '~/src/Configurations/AppStore'
 
-const homeImage = [
-  {
-    src: new URL('~/public/assets/images/home.png?as=webp', import.meta.url)
-      .href,
-    alt: 'Home Image',
-    as: 'image/webp'
-  },
-  {
-    src: new URL('~/public/assets/images/home.png', import.meta.url).href,
-    alt: 'Home Image',
-    as: 'image/png'
-  }
-]
-interface IHomePageProps extends PropsFromRedux {}
+import HOME_IMAGE from '~/src/Assets/HOME_IMAGE'
+
+interface IHomePageProps extends TPropsFromRedux, IWithRouterProps {}
 
 class HomePage extends React.Component<IHomePageProps> {
   handleSchemeChange = (name: string, value: boolean) => {
     const { actions } = this.props
     const newScheme = value ? 'dark' : 'light'
-    console.log('newScheme', newScheme)
     actions.setThemeScheme(newScheme)
   }
 
@@ -51,7 +41,10 @@ class HomePage extends React.Component<IHomePageProps> {
           px: 'var(--ds-spacing-warm)'
         }}
       >
-        <DsImage srcSet={homeImage} style={{ width: '100%', height: 'auto' }} />
+        <DsImage
+          srcSet={HOME_IMAGE}
+          style={{ width: '100%', height: 'auto' }}
+        />
         <DsTypography variant='displayBoldLarge'>Home Page</DsTypography>
         <DsBox
           sx={{
@@ -90,6 +83,6 @@ const mapDispatchToProps = (dispatch: TAppDispatch) => ({
 
 const connector = connect(mapStateToProps, mapDispatchToProps)
 
-type PropsFromRedux = ConnectedProps<typeof connector>
+type TPropsFromRedux = ConnectedProps<typeof connector>
 
-export default connector(HomePage)
+export default connector(withRouter(HomePage))

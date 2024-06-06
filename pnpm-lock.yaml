@@ -154,6 +154,9 @@ devDependencies:
   util:
     specifier: ^0.12.5
     version: 0.12.5
+  utility-types:
+    specifier: ^3.11.0
+    version: 3.11.0
 
 packages:
 
@@ -4673,6 +4676,9 @@ packages:
     resolution: {integrity: sha512-H/RI1/DmuOkL8RuG/EpNPvtzrbF+7jA/R56ydEEm+lqFbYktKB4COR7JXdHkZXRgbSJyimrFB8d0r9+SaRnj0Q==}
     engines: {node: '>= 12.0.0'}
     hasBin: true
+    peerDependenciesMeta:
+      '@parcel/core':
+        optional: true
     dependencies:
       '@parcel/config-default': 2.11.0(@parcel/core@2.11.0)(typescript@5.3.3)
       '@parcel/core': 2.11.0

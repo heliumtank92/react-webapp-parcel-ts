@@ -67,7 +67,8 @@
     "react-jsx": "^1.0.0",
     "sharp": "^0.31.1",
     "typescript": "^5.3.3",
-    "util": "^0.12.5"
+    "util": "^0.12.5",
+    "utility-types": "^3.11.0"
   },
   "parcel-namer-rewrite": {
     "profiles": {

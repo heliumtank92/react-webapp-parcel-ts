@@ -11,6 +11,7 @@ import {
   useParams,
   useSearchParams
 } from 'react-router-dom'
+import { Subtract } from 'utility-types'
 
 /**
  * Basic Interface to extend in components wrapping the below HOC.
@@ -30,14 +31,16 @@ export interface IWithRouterProps {
 /**
  * HOC to provide routing features
  *
- * @export
- * @param {React.ComponentType<P & IWithRouterProps>} Child
- * @return {*}  {React.ComponentType<P & IWithRouterProps>}
+ * @template P
+ * @param Child
+ * @returns
  */
-export default function withRouter<P = unknown>(
-  Child: React.ComponentType<P & IWithRouterProps>
-): React.ComponentType<P & IWithRouterProps> {
-  return function withRouterWrapper(props: P): React.JSX.Element {
+export default function withRouter<P extends IWithRouterProps>(
+  Child: React.ComponentType<P>
+) {
+  return function withRouterWrapper(
+    props: Subtract<P, IWithRouterProps>
+  ): React.JSX.Element {
     const location = useLocation()
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -47,7 +50,7 @@ export default function withRouter<P = unknown>(
 
     return (
       <Child
-        {...props}
+        {...(props as P)}
         setSearchParams={setSearchParams}
         searchParams={searchParams}
         navigate={navigate}

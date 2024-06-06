@@ -1,5 +1,6 @@
 import React from 'react'
 import { SupportedColorScheme, useColorScheme } from '@am92/react-design-system'
+import { Subtract } from 'utility-types'
 
 /**
  * Basic Interface to extend in components wrapping the below HOC.
@@ -15,20 +16,21 @@ export interface IWithColorSchemeProps {
 /**
  * HOC to provide current mode & toggle mode feature
  *
- * @export
- * @param {React.ComponentType<P & IWithColorSchemeProps>} Child
- * @return {*}  {React.ComponentType<any>}
+ * @template P
+ * @param Child
+ * @returns
  */
-
-export default function withColorScheme<P = unknown>(
-  Child: React.ComponentType<P & IWithColorSchemeProps>
-): React.ComponentType<P & IWithColorSchemeProps> {
-  return function withColorSchemeWrapper(props: P) {
+export default function withColorScheme<P extends IWithColorSchemeProps>(
+  Child: React.ComponentType<P>
+) {
+  return function withColorSchemeWrapper(
+    props: Subtract<P, IWithColorSchemeProps>
+  ) {
     const { colorScheme, setColorScheme } = useColorScheme()
 
     return (
       <Child
-        {...props}
+        {...(props as P)}
         colorScheme={colorScheme}
         setColorScheme={setColorScheme}
       />
