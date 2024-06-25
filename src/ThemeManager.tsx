@@ -7,7 +7,7 @@ import withColorScheme, {
 
 import { getThemeReducer } from '~/src/Redux/Theme/Selectors'
 
-import { TAppSore } from './Configurations/AppStore'
+import { TAppStore } from './Configurations/AppStore'
 
 export interface IThemeManagerProps
   extends IWithColorSchemeProps,
@@ -36,7 +36,7 @@ class ThemeManager extends PureComponent<IThemeManagerProps> {
   }
 }
 
-const mapStateToProps = (state: TAppSore) => {
+const mapStateToProps = (state: TAppStore) => {
   const theme = getThemeReducer(state)
   return {
     theme

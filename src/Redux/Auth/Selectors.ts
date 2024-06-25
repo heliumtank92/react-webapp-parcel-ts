@@ -1,13 +1,13 @@
 import { createSelector } from '@reduxjs/toolkit'
 
-import { TAppSore } from '~/src/Configurations/AppStore'
+import { TAppStore } from '~/src/Configurations/AppStore'
 
 export const SLICE_NAME = 'auth'
 
-// const select = (state: TAppSore) => state[SLICE_NAME]
-const isLoggedInSelect = (state: TAppSore) => state[SLICE_NAME].isLoggedIn
-const accessTokenSelect = (state: TAppSore) => state[SLICE_NAME].accessToken
-const refreshTokenSelect = (state: TAppSore) => state[SLICE_NAME].refreshToken
+// const select = (state: TAppStore) => state[SLICE_NAME]
+const isLoggedInSelect = (state: TAppStore) => state[SLICE_NAME].isLoggedIn
+const accessTokenSelect = (state: TAppStore) => state[SLICE_NAME].accessToken
+const refreshTokenSelect = (state: TAppStore) => state[SLICE_NAME].refreshToken
 
 export const getIsLoggedInSelector = createSelector(
   isLoggedInSelect,

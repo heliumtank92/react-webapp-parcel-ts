@@ -12,7 +12,7 @@ import ThemeManager from './ThemeManager'
 import { getThemeReducer } from './Redux/Theme/Selectors'
 
 import { THEME_MODE_STORAGE_KEY } from '~/src/Constants/THEME'
-import { TAppSore } from './Configurations/AppStore'
+import { TAppStore } from './Configurations/AppStore'
 
 interface IAppProps extends PropsFromRedux {
   persisted: boolean
@@ -40,7 +40,7 @@ class App extends Component<IAppProps> {
   }
 }
 
-const mapStateToProps = (state: TAppSore) => {
+const mapStateToProps = (state: TAppStore) => {
   const theme = getThemeReducer(state)
 
   return {
