@@ -12,7 +12,7 @@ import {
 } from './Redux/Auth/Selectors'
 import performHandshake from './Services/performHandshake'
 
-import { TAppSore } from './Configurations/AppStore'
+import { TAppStore } from './Configurations/AppStore'
 import { asHttp } from './Configurations/WebHttp'
 
 export interface IAppInitializerProps extends PropsFromRedux {}
@@ -63,7 +63,7 @@ class AppInitializer extends Component<
   }
 }
 
-const mapStateToProps = (state: TAppSore) => {
+const mapStateToProps = (state: TAppStore) => {
   const accessToken = getAccessTokenSelector(state)
   const refreshToken = getRefreshTokenSelector(state)
   return {

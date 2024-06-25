@@ -14,7 +14,7 @@ import withRouter, { IWithRouterProps } from '~/src/Hocs/withRouter'
 import { setThemeSchemeAction } from '~/src/Redux/Theme/Actions'
 import { getThemeReducer } from '~/src/Redux/Theme/Selectors'
 
-import { TAppDispatch, TAppSore } from '~/src/Configurations/AppStore'
+import { TAppDispatch, TAppStore } from '~/src/Configurations/AppStore'
 
 import HOME_IMAGE from '~/src/Assets/HOME_IMAGE'
 
@@ -66,7 +66,7 @@ class HomePage extends React.Component<IHomePageProps> {
   }
 }
 
-const mapStateToProps = (state: TAppSore) => {
+const mapStateToProps = (state: TAppStore) => {
   const theme = getThemeReducer(state)
 
   return {

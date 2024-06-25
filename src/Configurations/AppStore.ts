@@ -35,8 +35,8 @@ const PersistedAppStore = persistStore(AppStore)
 
 export default AppStore
 
-type TAppSore = ReturnType<typeof AppStore.getState>
+type TAppStore = ReturnType<typeof AppStore.getState>
 
 type TAppDispatch = typeof AppStore.dispatch
 
-export { TAppSore, TAppDispatch, PersistedAppStore }
+export { TAppStore, TAppDispatch, PersistedAppStore }
