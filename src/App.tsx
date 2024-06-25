@@ -21,14 +21,14 @@ interface IAppProps extends PropsFromRedux {
 class App extends Component<IAppProps> {
   render() {
     const { persisted, theme } = this.props
-    const { fontFamily, palette, scheme } = theme
+    const { fontFamily, palette, defaultMode } = theme
 
     const AppTheme = getTheme(palette, fontFamily)
 
     return (
       <CssVarsProvider
         theme={AppTheme}
-        defaultMode={scheme}
+        defaultMode={defaultMode}
         modeStorageKey={THEME_MODE_STORAGE_KEY}
       >
         <DsCssBaseline enableColorScheme>
